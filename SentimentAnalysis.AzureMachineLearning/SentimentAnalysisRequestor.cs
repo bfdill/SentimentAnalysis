@@ -1,9 +1,10 @@
-﻿namespace SentimentAnalysis.Core
+﻿namespace SentimentAnalysis.AzureMachineLearning
 {
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using Domain;
+    using Core;
+    using Core.Domain;
 
     public class SentimentAnalysisRequestor : ISentimentAnalysisRequestor
     {

@@ -1,6 +1,7 @@
 ﻿namespace SentimentAnalysis.Core
 {
     using System.Net;
+    using Domain;
 
     public class ErrorMessageGenerator : IErrorMessageGenerator
     {

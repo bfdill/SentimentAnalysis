@@ -53,10 +53,8 @@
     <Compile Include="Domain\Result.cs" />
     <Compile Include="Domain\Sentiment.cs" />
     <Compile Include="ErrorMessageGenerator.cs" />
-    <Compile Include="IErrorMessageGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestHeaderFactory.cs" />
-    <Compile Include="SentimentAnalysisRequestor.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
