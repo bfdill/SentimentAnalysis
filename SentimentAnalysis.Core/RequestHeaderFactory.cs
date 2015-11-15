@@ -21,8 +21,7 @@
 
         public string AuthorizationHeader()
         {
-            var cred = "AccountKey:" + _settings.GetApiKey();
-            return "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(cred));
+            return "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_settings.GetBasicAuthenticationCredentials()));
         }
 
         public MediaTypeWithQualityHeaderValue AcceptHeader()

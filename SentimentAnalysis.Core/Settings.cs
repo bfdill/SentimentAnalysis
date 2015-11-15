@@ -17,14 +17,14 @@
             _defaultServiceBaseUri = defaultServiceBaseUri;
         }
 
-        public string GetApiKey()
+        public string GetBasicAuthenticationCredentials()
         {
-            var key = ConfigurationManager.AppSettings[Constants.AccountConfigKey];
+            var key = ConfigurationManager.AppSettings[Constants.BasicAuthenticationCredentialsConfigKey];
 
             if (key == null)
             {
                 throw new InvalidOperationException(
-                    $@"You must specify an account key ({Constants.AccountConfigKey}) app setting. ");
+                    $@"You must specify basic authentication credentials in the form of username:password in the ({Constants.BasicAuthenticationCredentialsConfigKey}) app setting. ");
             }
 
             return key;
@@ -62,6 +62,24 @@
             if (!int.TryParse(configValue, out limit))
             {
                 throw new InvalidCastException($"Invalid value for {Constants.BatchLimitConfigKey} configraution setting");
+            }
+
+            return limit;
+        }
+
+        public int GetBatchByteSizeLimit()
+        {
+            var configValue = ConfigurationManager.AppSettings[Constants.BatchByteSizeLimitConfigKey];
+
+            if (configValue == null)
+            {
+                return Constants.DefaultBatchByteSizeLimit;
+            }
+
+            int limit;
+            if (!int.TryParse(configValue, out limit))
+            {
+                throw new InvalidCastException($"Invalid value for {Constants.BatchByteSizeLimitConfigKey} configraution setting");
             }
 
             return limit;

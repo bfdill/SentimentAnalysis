@@ -27,11 +27,11 @@
         [TestMethod]
         public void ReturnValueFromConfiguration()
         {
-            const int Expected = 500;
+            const int expected = 500;
             ConfigurationManager.AppSettings[Constants.BatchLimitConfigKey] = 500.ToString();
 
             var result = this.Sut.GetBatchLimit();
-            Assert.AreEqual(Expected, result);
+            Assert.AreEqual(expected, result);
         }
     }
 }

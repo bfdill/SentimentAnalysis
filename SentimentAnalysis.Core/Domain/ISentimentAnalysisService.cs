@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SentimentAnalysis.Core.Domain
+﻿namespace SentimentAnalysis.Core.Domain
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface ITextAnalyticsService
+    public interface ISentimentAnalysisService
     {
         Task<Result> GetSentimentAsync(string text);
 

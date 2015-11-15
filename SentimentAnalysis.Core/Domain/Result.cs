@@ -15,6 +15,16 @@
 
         public Sentiment Sentiment { get; }
 
+        public static Result Build(Sentiment sentiment)
+        {
+            return new Result(true, null, sentiment);
+        }
+
+        public static Result Build(string error)
+        {
+            return new Result(false, error, Sentiment.Invalid);
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -28,15 +38,5 @@
         }
 
         public override int GetHashCode() => Sentiment.GetHashCode() ^ Success.GetHashCode() ^ Error?.GetHashCode() ?? 0;
-
-        public static Result Build(Sentiment sentiment)
-        {
-            return new Result(true, null, sentiment);
-        }
-
-        public static Result Build(string error)
-        {
-            return new Result(false, error, Sentiment.Invalid);
-        }
     }
 }

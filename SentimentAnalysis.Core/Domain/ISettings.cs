@@ -4,10 +4,12 @@
 
     public interface ISettings
     {
-        string GetApiKey();
+        string GetBasicAuthenticationCredentials();
 
         Uri GetServiceBaseUri();
 
         int GetBatchLimit();
+
+        int GetBatchByteSizeLimit();
     }
 }
