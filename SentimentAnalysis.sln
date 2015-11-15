@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.Core", "SentimentAnalysis.Core\SentimentAnalysis.Core.csproj", "{FFDCB3E4-9986-4D15-BAC1-374657990B1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.Core.Tests", "SentimentAnalysis.Core.Tests\SentimentAnalysis.Core.Tests.csproj", "{4DF1BE58-6B71-426D-B3F4-DF38FF546BD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.AzureMachineLearning", "SentimentAnalysis.AzureMachineLearning\SentimentAnalysis.AzureMachineLearning.csproj", "{5DBD1AE7-E917-4657-AC0E-77C19AF22531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.AzureMachineLearning.Tests", "SentimentAnalysis.AzureMachineLearning.Tests\SentimentAnalysis.AzureMachineLearning.Tests.csproj", "{0873E674-6B21-402F-9929-4E74AD8D8B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.Vivekn.Tests", "SentimentAnalysis.Vivekn.Tests\SentimentAnalysis.Vivekn.Tests.csproj", "{7924D4BB-ABC8-46B6-8DDC-6F3DA84435EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis.Vivekn", "SentimentAnalysis.Vivekn\SentimentAnalysis.Vivekn.csproj", "{692C20F0-78D8-4BF2-80D3-9FEBC2BD1670}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{47349929-2CF6-4465-8877-48932B74703B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		SentimentAnalysis.ruleset = SentimentAnalysis.ruleset
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFDCB3E4-9986-4D15-BAC1-374657990B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFDCB3E4-9986-4D15-BAC1-374657990B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFDCB3E4-9986-4D15-BAC1-374657990B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFDCB3E4-9986-4D15-BAC1-374657990B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF1BE58-6B71-426D-B3F4-DF38FF546BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF1BE58-6B71-426D-B3F4-DF38FF546BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF1BE58-6B71-426D-B3F4-DF38FF546BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF1BE58-6B71-426D-B3F4-DF38FF546BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBD1AE7-E917-4657-AC0E-77C19AF22531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBD1AE7-E917-4657-AC0E-77C19AF22531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBD1AE7-E917-4657-AC0E-77C19AF22531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBD1AE7-E917-4657-AC0E-77C19AF22531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0873E674-6B21-402F-9929-4E74AD8D8B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0873E674-6B21-402F-9929-4E74AD8D8B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0873E674-6B21-402F-9929-4E74AD8D8B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0873E674-6B21-402F-9929-4E74AD8D8B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7924D4BB-ABC8-46B6-8DDC-6F3DA84435EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7924D4BB-ABC8-46B6-8DDC-6F3DA84435EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7924D4BB-ABC8-46B6-8DDC-6F3DA84435EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7924D4BB-ABC8-46B6-8DDC-6F3DA84435EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692C20F0-78D8-4BF2-80D3-9FEBC2BD1670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692C20F0-78D8-4BF2-80D3-9FEBC2BD1670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692C20F0-78D8-4BF2-80D3-9FEBC2BD1670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692C20F0-78D8-4BF2-80D3-9FEBC2BD1670}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
