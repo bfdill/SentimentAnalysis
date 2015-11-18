@@ -1,9 +1,9 @@
-﻿namespace SentimentAnalysis.Core.Tests.RequestHeaderFactory
+﻿namespace SentimentAnalysis.AzureMachineLearning.Tests.RequestHeaderFactory
 {
     using System.Net.Http.Headers;
     using DotNetTestHelper;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RequestHeaderFactory = Core.RequestHeaderFactory;
+    using RequestHeaderFactory = AzureMachineLearning.RequestHeaderFactory;
 
     [TestClass]
     public class AcceptHeaderShould

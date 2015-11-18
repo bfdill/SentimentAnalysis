@@ -1,4 +1,4 @@
-﻿namespace SentimentAnalysis.Core
+﻿namespace SentimentAnalysis.AzureMachineLearning
 {
     using System;
     using System.Net.Http.Headers;
@@ -7,9 +7,9 @@
 
     public class RequestHeaderFactory : IRequestHeaderFactory
     {
-        private readonly ISettings _settings;
+        private readonly IAzureMachingLearningSettings _settings;
 
-        public RequestHeaderFactory(ISettings settings)
+        public RequestHeaderFactory(IAzureMachingLearningSettings settings)
         {
             if (settings == null)
             {

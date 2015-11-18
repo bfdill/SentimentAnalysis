@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Core;
     using Core.Domain;
     using Domain;
     using Newtonsoft.Json;
+    using AMLSettings = Domain.IAzureMachingLearningSettings;
 
     public class SentimentAnalysisService : ISentimentAnalysisService
     {
@@ -16,9 +16,9 @@
 
         private readonly ISentimentAnalysisRequestor _requestor;
 
-        private readonly ISettings _settings;
+        private readonly AMLSettings _settings;
 
-        public SentimentAnalysisService(ISentimentAnalysisRequestor requestor, IErrorMessageGenerator errorMessageGenerator, ISettings settings)
+        public SentimentAnalysisService(ISentimentAnalysisRequestor requestor, IErrorMessageGenerator errorMessageGenerator, AMLSettings settings)
         {
             if (requestor == null)
             {
@@ -60,30 +60,19 @@
                 content = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
                 {
-                    return textBatch.ToDictionary(r => r.Key, r => Result.Build(_errorMessageGenerator.GenerateError(response.StatusCode, content)));
+                    return textBatch.ToDictionary(r => r.Key, r => (Result)AzureMachineLearningResult.Build(_errorMessageGenerator.GenerateError(response.StatusCode, content)));
                 }
             }
 
             var result = JsonConvert.DeserializeObject<SentimentBatchResult>(content);
-
-            var parsedResults = result.SentimentBatch.ToDictionary(sr => sr.Id, sr => Result.Build(ScoreToSentiment(sr.Score)));
+            var parsedResults = result.SentimentBatch.ToDictionary(sr => sr.Id, sr => (Result)AzureMachineLearningResult.Build(sr.Score, ScoreToSentiment(sr.Score)));
 
             foreach (var error in result.Errors)
             {
-                parsedResults.Add(error.Id, Result.Build(error.Message));
+                parsedResults.Add(error.Id, AzureMachineLearningResult.Build(error.Message));
             }
 
             return parsedResults;
-        }
-
-        private static Sentiment ScoreToSentiment(decimal score)
-        {
-            if (score < 45)
-            {
-                return Sentiment.Negative;
-            }
-
-            return score > 55 ? Sentiment.Positive : Sentiment.Neutral;
         }
 
         private static string BuildInputString(IDictionary<string, string> textBatch)
@@ -101,6 +90,16 @@
             return i.ToString();
         }
 
+        private Sentiment ScoreToSentiment(decimal score)
+        {
+            if (score < _settings.GetNegativeSentimentThreshold())
+            {
+                return Sentiment.Negative;
+            }
+
+            return score > _settings.GetPositiveSentimentThreshold() ? Sentiment.Positive : Sentiment.Neutral;
+        }
+
         private void ValidateBatchRequest(Dictionary<string, string> textBatch)
         {
             if (textBatch == null)
@@ -108,9 +107,9 @@
                 throw new ArgumentNullException(nameof(textBatch));
             }
 
-            if (textBatch.Count > _settings.GetBatchLimit())
+            if (textBatch.Count > _settings.GetBatchItemLimit())
             {
-                throw new InvalidOperationException(Constants.BatchLimitExceededErrorText);
+                throw new InvalidOperationException(Constants.BatchItemLimitExceededErrorText);
             }
         }
     }

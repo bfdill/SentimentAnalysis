@@ -1,8 +1,8 @@
 ﻿namespace SentimentAnalysis.Core.Domain
 {
-    public class Result
+    public abstract class Result
     {
-        private Result(bool success, string error, Sentiment sentiment)
+        protected Result(bool success, string error, Sentiment sentiment)
         {
             Success = success;
             Error = error;
@@ -14,16 +14,6 @@
         public string Error { get; }
 
         public Sentiment Sentiment { get; }
-
-        public static Result Build(Sentiment sentiment)
-        {
-            return new Result(true, null, sentiment);
-        }
-
-        public static Result Build(string error)
-        {
-            return new Result(false, error, Sentiment.Invalid);
-        }
 
         public override bool Equals(object obj)
         {

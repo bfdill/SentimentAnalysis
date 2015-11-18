@@ -80,13 +80,6 @@
   <ItemGroup>
     <Compile Include="ErrorMessageGenerator\ParseErrorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestHeaderFactory\AcceptHeaderShould.cs" />
-    <Compile Include="RequestHeaderFactory\AuthorizationHeaderShould.cs" />
-    <Compile Include="Settings\GetBasicAuthenticationCredentialsShould.cs" />
-    <Compile Include="Settings\GetBatchLimitShould.cs" />
-    <Compile Include="Settings\GetServiceBaseUriShould.cs" />
-    <Compile Include="Settings\SettingsTest.cs" />
-    <Compile Include="Settings\GetBatchByteSizeLimitShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SentimentAnalysis.Core\SentimentAnalysis.Core.csproj">

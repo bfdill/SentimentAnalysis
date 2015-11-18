@@ -1,4 +1,4 @@
-﻿namespace SentimentAnalysis.Core.Tests.Settings
+﻿namespace SentimentAnalysis.AzureMachineLearning.Tests.Settings
 {
     using System;
     using System.Configuration;

@@ -1,4 +1,4 @@
-﻿namespace SentimentAnalysis.Core.Tests.RequestHeaderFactory
+﻿namespace SentimentAnalysis.AzureMachineLearning.Tests.RequestHeaderFactory
 {
     using System;
     using System.Text;
@@ -6,7 +6,7 @@
     using DotNetTestHelper;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using RequestHeaderFactory = Core.RequestHeaderFactory;
+    using RequestHeaderFactory = AzureMachineLearning.RequestHeaderFactory;
 
     [TestClass]
     public class AuthorizationHeaderShould
@@ -22,9 +22,9 @@
             Assert.AreEqual(expected, sut.AuthorizationHeader());
         }
 
-        private static ISettings CreateSettings()
+        private static IAzureMachingLearningSettings CreateSettings()
         {
-            var settings = new Mock<ISettings>();
+            var settings = new Mock<IAzureMachingLearningSettings>();
             settings.Setup(s => s.GetBasicAuthenticationCredentials()).Returns(TestBasicCredentials);
             return settings.Object;
         }

@@ -38,6 +38,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -48,12 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\AzureMachineLearningResult.cs" />
+    <Compile Include="Domain\IRequestHeaderFactory.cs" />
+    <Compile Include="RequestHeaderFactory.cs" />
+    <Compile Include="AzureMachineLearningSettings.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Domain\ErrorRecord.cs" />
+    <Compile Include="Domain\IAzureMachingLearningSettings.cs" />
     <Compile Include="Domain\SentimentBatchResult.cs" />
     <Compile Include="Domain\SentimentResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SentimentAnalysisRequestor.cs" />
     <Compile Include="SentimentAnalysisService.cs" />
+    <Compile Include="ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

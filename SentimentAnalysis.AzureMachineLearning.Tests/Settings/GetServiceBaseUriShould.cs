@@ -1,24 +1,22 @@
-﻿namespace SentimentAnalysis.Core.Tests.Settings
+﻿namespace SentimentAnalysis.AzureMachineLearning.Tests.Settings
 {
     using System;
     using System.Configuration;
     using AssertExLib;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Settings = Core.Settings;
 
     [TestClass]
     public class GetServiceBaseUriShould : SettingsTest
     {
         [TestMethod]
-        public void ReturnDefaultWhenProvided()
+        public void ReturnDefaultWhenNotConfigured()
         {
-            const string expected = "https://www.example.com";
+            var expected = new Uri(Constants.DefaultServiceBaseUri);
 
-            Sut = new Settings(new Uri(expected));
+            Assert.IsNull(ConfigurationManager.AppSettings[Constants.ServiceBaseUriConfigKey]);
 
             var result = Sut.GetServiceBaseUri();
-
-            Assert.AreEqual(new Uri(expected), result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]

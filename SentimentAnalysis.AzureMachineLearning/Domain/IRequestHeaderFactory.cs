@@ -1,4 +1,4 @@
-﻿namespace SentimentAnalysis.Core.Domain
+﻿namespace SentimentAnalysis.AzureMachineLearning.Domain
 {
     using System.Net.Http.Headers;
 

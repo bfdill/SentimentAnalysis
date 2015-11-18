@@ -46,16 +46,12 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Domain\IErrorMessageGenerator.cs" />
-    <Compile Include="Domain\IRequestHeaderFactory.cs" />
     <Compile Include="Domain\ISentimentAnalysisRequestor.cs" />
     <Compile Include="Domain\ISentimentAnalysisService.cs" />
-    <Compile Include="Domain\ISettings.cs" />
     <Compile Include="Domain\Result.cs" />
     <Compile Include="Domain\Sentiment.cs" />
     <Compile Include="ErrorMessageGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestHeaderFactory.cs" />
-    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

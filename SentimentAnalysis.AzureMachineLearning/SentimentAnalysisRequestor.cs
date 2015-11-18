@@ -3,16 +3,17 @@
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using Core;
     using Core.Domain;
+    using Domain;
+    using AMLSettings = Domain.IAzureMachingLearningSettings;
 
     public class SentimentAnalysisRequestor : ISentimentAnalysisRequestor
     {
         private readonly IRequestHeaderFactory _headerFactory;
 
-        private readonly ISettings _settings;
+        private readonly AMLSettings _settings;
 
-        public SentimentAnalysisRequestor(IRequestHeaderFactory headerFactory, ISettings settings)
+        public SentimentAnalysisRequestor(IRequestHeaderFactory headerFactory, AMLSettings settings)
         {
             if (headerFactory == null)
             {
@@ -39,19 +40,11 @@
             }
         }
 
-        public async Task<HttpResponseMessage> GetAsync(string request)
-        {
-            using (var client = BuildClient())
-            {
-                return await client.GetAsync(request);
-            }
-        }
-
         private HttpClient BuildClient()
         {
             var client = new HttpClient { BaseAddress = _settings.GetServiceBaseUri() };
 
-            client.DefaultRequestHeaders.Add(Constants.AuthorizationHeaderName, _headerFactory.AuthorizationHeader());
+            client.DefaultRequestHeaders.Add("Authorization", _headerFactory.AuthorizationHeader());
             client.DefaultRequestHeaders.Accept.Add(_headerFactory.AcceptHeader());
 
             return client;
