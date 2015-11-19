@@ -13,7 +13,7 @@
         {
             var expected = new Uri(Constants.DefaultServiceBaseUri);
 
-            Assert.IsNull(ConfigurationManager.AppSettings[Constants.ServiceBaseUriConfigKey]);
+            ConfigurationManager.AppSettings[Constants.ServiceBaseUriConfigKey] = null;
 
             var result = Sut.GetServiceBaseUri();
             Assert.AreEqual(expected, result);

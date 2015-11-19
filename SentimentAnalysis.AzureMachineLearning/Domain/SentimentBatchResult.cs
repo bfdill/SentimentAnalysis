@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class SentimentBatchResult
+    internal class SentimentBatchResult
     {
         public IEnumerable<SentimentResult> SentimentBatch { get; set; }
 

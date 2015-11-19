@@ -10,9 +10,9 @@
 
         public const int DefaultBatchItemLimit = 1000;
 
-        public const decimal DefaultNegativeSentimentThreshold = 40m;
+        public const decimal DefaultNegativeSentimentThreshold = .4M;
 
-        public const decimal DefaultPositiveSentimentThreshold = 70m;
+        public const decimal DefaultPositiveSentimentThreshold = .7M;
 
         public const string NegativeSentimentThresholdConfigKey = "AzureMachineLearning:NegativeSentimentThreshold";
 

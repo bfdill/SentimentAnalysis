@@ -1,6 +1,6 @@
 ﻿namespace SentimentAnalysis.AzureMachineLearning.Domain
 {
-    public class ErrorRecord
+    internal class ErrorRecord
     {
         public string Id { get; set; }
 

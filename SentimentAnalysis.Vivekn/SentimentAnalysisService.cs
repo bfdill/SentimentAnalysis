@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
     using Core.Domain;
     using Domain;
@@ -40,6 +41,11 @@
 
         public async Task<Result> GetSentimentAsync(string text)
         {
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
             return (await GetBatchSentimentAsync(new Dictionary<string, string> { { string.Empty, text } })).First().Value;
         }
 
@@ -65,31 +71,20 @@
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return textBatch.ToDictionary(tb => tb.Key, tb => (Result)ViveknResult.Build(_errorMessageGenerator.GenerateError(response.StatusCode, rc)));
+                    return textBatch.ToDictionary(tb => tb.Key, tb => ViveknResult.Build(_errorMessageGenerator.GenerateError(response.StatusCode, rc)));
                 }
             }
 
-            dynamic results = JsonConvert.DeserializeObject(rc);
+            var results = (IEnumerable<dynamic>)JsonConvert.DeserializeObject(rc, typeof(IEnumerable<dynamic>));
+            return textBatch
+                .Keys
+                .Zip(results, (key, result) => new Tuple<string, Result>(key, ResultFactory(result)))
+                .ToDictionary(r => r.Item1, r => r.Item2);
+        }
 
-            var keys = textBatch.Keys.ToArray();
-            var output = new Dictionary<string, Result>(textBatch.Count);
-            var i = 0;
-
-            foreach (var r in results)
-            {
-                decimal confidence = r.confidence;
-                string sentimentText = r.result;
-                var sentiment = (Sentiment)Enum.Parse(typeof(Sentiment), sentimentText, true);
-                var item = ViveknResult.Build(confidence, sentiment);
-
-                // var item = ViveknResult.Build(decimal.Parse(r.confidence), (Sentiment)Enum.Parse(typeof(Sentiment), (string)r.result, true));
-
-                output.Add(keys[i], item);
-
-                i++;
-            }
-
-            return output;
+        private static Result ResultFactory(dynamic r)
+        {
+            return ViveknResult.Build((decimal)r.confidence, (Sentiment)Enum.Parse(typeof(Sentiment), (string)r.result, true));
         }
     }
 }

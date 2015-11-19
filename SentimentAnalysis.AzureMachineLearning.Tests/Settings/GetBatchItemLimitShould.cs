@@ -28,7 +28,7 @@
         public void ReturnValueFromConfiguration()
         {
             const int expected = 500;
-            ConfigurationManager.AppSettings[Constants.BatchItemLimitConfigKey] = 500.ToString();
+            ConfigurationManager.AppSettings[Constants.BatchItemLimitConfigKey] = expected.ToString();
 
             var result = Sut.GetBatchItemLimit();
             Assert.AreEqual(expected, result);

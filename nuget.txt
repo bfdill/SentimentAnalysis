@@ -1,0 +1,6 @@
+1) Remove existing nupkg files
+2) Update nuspec files with relevant information
+2) For each project (Make sure to do Core first)
+    - Build
+    - nuget pack -IncludeReferencedProjects -Symbols
+    - nuget push *.nupkg

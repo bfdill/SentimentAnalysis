@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Nuget|AnyCPU'">
+    <OutputPath>bin\Nuget\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AssertExLib, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AssertEx.1.0.0\lib\net45\AssertExLib.dll</HintPath>
@@ -79,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestHeaderFactory\AcceptHeaderShould.cs" />
     <Compile Include="RequestHeaderFactory\AuthorizationHeaderShould.cs" />
+    <Compile Include="SentimentAnalysisService\GetBatchSentimentAsyncShould.cs" />
+    <Compile Include="SentimentAnalysisService\GetSentimentAsyncShould.cs" />
+    <Compile Include="SentimentAnalysisService\SentimentAnalysisTestHelper.cs" />
     <Compile Include="Settings\GetBasicAuthenticationCredentialsShould.cs" />
     <Compile Include="Settings\GetPositiveSentimentThresholdShould.cs" />
     <Compile Include="Settings\GetNegativeSentimentThresholdShould.cs" />

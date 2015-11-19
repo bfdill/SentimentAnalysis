@@ -1,6 +1,6 @@
 ﻿namespace SentimentAnalysis.AzureMachineLearning.Domain
 {
-    public class SentimentResult
+    internal class SentimentResult
     {
         public string Id { get; set; }
 

@@ -12,12 +12,12 @@
 
         public decimal Confidence { get; }
 
-        public static ViveknResult Build(decimal confidence, Sentiment sentiment)
+        public static Result Build(decimal confidence, Sentiment sentiment)
         {
             return new ViveknResult(confidence, true, null, sentiment);
         }
 
-        public static ViveknResult Build(string error)
+        public static Result Build(string error)
         {
             return new ViveknResult(decimal.Zero, false, error, Sentiment.Invalid);
         }

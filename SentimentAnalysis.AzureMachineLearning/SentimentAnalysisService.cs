@@ -42,6 +42,11 @@
 
         public async Task<Result> GetSentimentAsync(string text)
         {
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
             return (await GetBatchSentimentAsync(new Dictionary<string, string> { { string.Empty, text } })).First().Value;
         }
 
@@ -60,12 +65,12 @@
                 content = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
                 {
-                    return textBatch.ToDictionary(r => r.Key, r => (Result)AzureMachineLearningResult.Build(_errorMessageGenerator.GenerateError(response.StatusCode, content)));
+                    return textBatch.ToDictionary(r => r.Key, r => AzureMachineLearningResult.Build(_errorMessageGenerator.GenerateError(response.StatusCode, content)));
                 }
             }
 
             var result = JsonConvert.DeserializeObject<SentimentBatchResult>(content);
-            var parsedResults = result.SentimentBatch.ToDictionary(sr => sr.Id, sr => (Result)AzureMachineLearningResult.Build(sr.Score, ScoreToSentiment(sr.Score)));
+            var parsedResults = result.SentimentBatch.ToDictionary(sr => sr.Id, sr => AzureMachineLearningResult.Build(sr.Score, ScoreToSentiment(sr.Score)));
 
             foreach (var error in result.Errors)
             {
@@ -92,6 +97,11 @@
 
         private Sentiment ScoreToSentiment(decimal score)
         {
+            if (score < 0 || score > 1)
+            {
+                return Sentiment.Invalid;
+            }
+
             if (score < _settings.GetNegativeSentimentThreshold())
             {
                 return Sentiment.Negative;
