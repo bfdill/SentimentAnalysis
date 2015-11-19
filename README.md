@@ -15,7 +15,9 @@ OR
 PM> Install-Package SentimentAnalysis.Vivekn
 ```
 
-The Azure Machine Learning implementation requires the use of an API.  This means you will need to [request that from them](https://azure.microsoft.com/en-us/documentation/articles/machine-learning-apps-text-analytics/) and put it in the config file under this setting AzureMachineLearning:BasicAuthenticationCredentials.
+The Azure Machine Learning implementation requires the use of an API Key and allows 10,000 free lookups a month.  If you need more than that, you have to pay them.  Not me, I'm not affiliated with them in any way, shape, or form.  Their implementation was one of many that came up while I was researching Sentiment Analysis.
+
+This means you will need to [request that from them](https://azure.microsoft.com/en-us/documentation/articles/machine-learning-apps-text-analytics/) and put it in the config file under this setting AzureMachineLearning:BasicAuthenticationCredentials.
 
 ```xml
 <appSettings>
