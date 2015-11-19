@@ -13,7 +13,9 @@
     public class GetSentimentAsyncShould
     {
         [TestMethod]
+#pragma warning disable 1998
         public async Task ThrowIfInputIsNull()
+#pragma warning restore 1998
         {
             var sut = SentimentAnalysisTestHelper.BuildSut(GetMessage());
 

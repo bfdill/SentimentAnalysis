@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Cryptography;
+    using System.Text;
     using System.Threading.Tasks;
     using Core.Domain;
     using Domain;
@@ -63,6 +63,12 @@
 
             var values = textBatch.Select(b => b.Value?.ToLower());
             var fc = JsonConvert.SerializeObject(values);
+
+            if (!IsBatchSizeValid(fc))
+            {
+                return textBatch.ToDictionary(tb => tb.Key, tb => ViveknResult.Build(Constants.BatchByteSizeLimitExceededErrorText));
+            }
+
             string rc;
 
             using (var response = await _requestor.PostAsync(Constants.SentimentBatchRequest, fc))
@@ -85,6 +91,11 @@
         private static Result ResultFactory(dynamic r)
         {
             return ViveknResult.Build((decimal)r.confidence, (Sentiment)Enum.Parse(typeof(Sentiment), (string)r.result, true));
+        }
+
+        private bool IsBatchSizeValid(string fc)
+        {
+            return Encoding.UTF8.GetByteCount(fc) < _settings.GetBatchByteSizeLimit();
         }
     }
 }

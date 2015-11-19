@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SentimentAnalysis.Vivekn.Tests.SentimentAnalysisService
+﻿namespace SentimentAnalysis.Vivekn.Tests.SentimentAnalysisService
 {
-    using System.Net.Http;
+    using System;
+    using System.Threading.Tasks;
     using AssertExLib;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +9,9 @@ namespace SentimentAnalysis.Vivekn.Tests.SentimentAnalysisService
     public class GetSentimentAsyncShould
     {
         [TestMethod]
+#pragma warning disable 1998
         public async Task ThrowIfInputIsNull()
+#pragma warning restore 1998
         {
             var sut = SentimentAnalysisTestHelper.BuildSut(SentimentAnalysisTestHelper.GetResponseMessageSingle());
 

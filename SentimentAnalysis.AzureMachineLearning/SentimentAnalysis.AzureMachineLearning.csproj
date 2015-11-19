@@ -90,11 +90,15 @@
     <Error Condition="!Exists('..\packages\StyleCop.Analyzers.1.0.0-beta015\build\StyleCop.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\StyleCop.Analyzers.1.0.0-beta015\build\StyleCop.Analyzers.targets'))" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>del "$(ProjectDir)$(OutDir)*.nupkg"</PreBuildEvent>
+    <PreBuildEvent>if $(ConfigurationName) == Nuget (
+del "$(ProjectDir)$(OutDir)*.nupkg"
+)</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>nuget pack "$(ProjectPath)" -IncludeReferencedProjects
-nuget push "$(TargetDir)*.nupkg"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Nuget (
+nuget pack "$(ProjectPath)" -IncludeReferencedProjects
+nuget push "$(TargetDir)*.nupkg"
+)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

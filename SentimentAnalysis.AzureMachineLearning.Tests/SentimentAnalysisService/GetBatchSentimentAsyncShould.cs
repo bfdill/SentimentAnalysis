@@ -46,9 +46,10 @@
         }
 
         [TestMethod]
+#pragma warning disable 1998
         public async Task ThrowIfInputIsNull()
+#pragma warning restore 1998
         {
-            var expected = AzureMachineLearningResult.Build(Core.Constants.SentimentNullInputErrorText);
             var sut = SentimentAnalysisTestHelper.BuildSut(GetMessage());
 
             AssertEx.TaskThrows<ArgumentNullException>(async () => await sut.GetBatchSentimentAsync(null));
@@ -113,7 +114,9 @@
 
         private static HttpResponseMessage GetMessage()
         {
-            return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(@"{
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(@"{
   ""odata.metadata"":""https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/$metadata"", ""SentimentBatch"":
     [{""Score"":0.9549767,""Id"":""1""},
      {""Score"":0.7767222,""Id"":""2""},
@@ -122,7 +125,8 @@
     ""Errors"":[
        {""Id"": ""4"", Message:""Record cannot be null/empty""}
     ]
-}") };
+}")
+            };
         }
     }
 }

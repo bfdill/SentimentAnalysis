@@ -12,6 +12,7 @@
     using Core.Domain;
     using Domain;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Constants = Vivekn.Constants;
 
     [TestClass]
     public class GetBatchSentimentAsyncShould
@@ -27,25 +28,23 @@
         };
 
         [TestMethod]
-        public void ThrowIfOverBatchSizeLimit()
+        public async Task ReturnErrorWhenBatchSizeExceeded()
         {
-            ConfigurationManager.AppSettings[Vivekn.Constants.BatchByteSizeLimitConfigKey] = "100";
+            ConfigurationManager.AppSettings[Vivekn.Constants.BatchByteSizeLimitConfigKey] = "10";
             var sut = SentimentAnalysisTestHelper.BuildSut(SentimentAnalysisTestHelper.GetResponseMessageBatch());
 
-            var requests = new Dictionary<string, string>();
+            var expected = ViveknResult.Build(Constants.BatchByteSizeLimitExceededErrorText);
+            var request = new Dictionary<string, string>() { { "A", "The quick brown fox jumps over the lazy dog." } };
+            var result = await sut.GetBatchSentimentAsync(request);
 
-            for (var i = 0; i < 11; i++)
-            {
-                requests.Add(i.ToString(), "this is text");
-            }
-
-            AssertEx.TaskThrows<InvalidOperationException>(() => sut.GetBatchSentimentAsync(requests));
+            Assert.AreEqual(expected, result.First().Value);
         }
 
         [TestMethod]
+#pragma warning disable 1998
         public async Task ThrowIfInputIsNull()
+#pragma warning restore 1998
         {
-            var expected = ViveknResult.Build(Core.Constants.SentimentNullInputErrorText);
             var sut = SentimentAnalysisTestHelper.BuildSut(SentimentAnalysisTestHelper.GetResponseMessageBatch());
 
             AssertEx.TaskThrows<ArgumentNullException>(async () => await sut.GetBatchSentimentAsync(null));
