@@ -18,7 +18,7 @@
         [TestCleanup]
         public void Cleanup()
         {
-            ConfigurationManager.AppSettings[Constants.ServiceBaseUriConfigKey] = Constants.DefaultServiceBaseUri;
+            ConfigurationManager.AppSettings[Constants.ServiceBaseUriConfigKey] = null;
             ConfigurationManager.AppSettings[Constants.BatchByteSizeLimitConfigKey] = Constants.DefaultBatchByteSizeLimit.ToString();
         }
     }

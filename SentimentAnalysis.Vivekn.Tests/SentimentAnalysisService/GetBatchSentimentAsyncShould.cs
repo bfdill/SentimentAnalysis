@@ -38,6 +38,7 @@
             var result = await sut.GetBatchSentimentAsync(request);
 
             Assert.AreEqual(expected, result.First().Value);
+            ConfigurationManager.AppSettings[Vivekn.Constants.BatchByteSizeLimitConfigKey] = null;
         }
 
         [TestMethod]
@@ -81,7 +82,7 @@
         public async Task ConvertDictionaryToPostBody()
         {
             const string expected =
-                @"{""Inputs"":[{""Id"":""1"",""Text"":""This is the first request""},{""Id"":""2"",""Text"":""This is the second request""},{""Id"":""3"",""Text"":""This is the third request""},{""Id"":""4"",""Text"":""this should cause an error""},]}";
+                @"[""this is the first request"",""this is the second request"",""this is the third request"",""this should cause an error""]";
             var request = string.Empty;
 
             var requestor = SentimentAnalysisTestHelper.BuildMockRequestorForPost((req, body) => request = body, SentimentAnalysisTestHelper.GetResponseMessageBatch());
@@ -96,10 +97,8 @@
         {
             var expected = new Dictionary<string, Result>
             {
-                { "1", ViveknResult.Build(0.9549767M, Sentiment.Positive) },
-                { "2", ViveknResult.Build(0.7767222M, Sentiment.Positive) },
-                { "3", ViveknResult.Build(0.8988889M, Sentiment.Positive) },
-                { "4", ViveknResult.Build("Record cannot be null/empty") }
+                { "1", ViveknResult.Build(100M, Sentiment.Positive) },
+                { "2", ViveknResult.Build(100M, Sentiment.Negative) }
             };
 
             var sut = SentimentAnalysisTestHelper.BuildSut(SentimentAnalysisTestHelper.GetResponseMessageBatch());
