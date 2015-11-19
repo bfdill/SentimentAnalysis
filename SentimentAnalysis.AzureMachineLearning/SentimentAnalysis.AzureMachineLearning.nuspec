@@ -10,7 +10,15 @@
     <projectUrl>https://github.com/bfdill/SentimentAnalysis</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Intial Release.</releaseNotes>
+    <releaseNotes>
+      This is a .NET wrapper for the Azure Machine Learning Text Analysis service.  You will need an API key in order to process data, that you get from Azure.  https://azure.microsoft.com/en-us/documentation/articles/machine-learning-apps-text-analytics
+      It will need to be placed in an appSetting named:
+      AzureMachineLearning:BasicAuthenticationCredentials
+      The value there should be:
+      AccountKey:KeyFromAzure
+      
+      Please see the project URL for additional instructions or contact me directly with any questions.
+    </releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Sentiment Analysis Azure Machine Learning</tags>
   </metadata>

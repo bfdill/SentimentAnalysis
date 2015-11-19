@@ -10,7 +10,11 @@
     <projectUrl>https://github.com/bfdill/SentimentAnalysis</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Intial release.</releaseNotes>
+    <releaseNotes>
+      This is a .NET wrapper for the API of this online sentiment analysis tool: http://sentiment.vivekn.com/
+      It should run with zero configuration.
+      Please see the project URL for additional information or contact me directly.
+    </releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Sentiment Analysis Vivekn</tags>
   </metadata>
