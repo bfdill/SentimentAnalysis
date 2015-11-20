@@ -18,4 +18,7 @@
     <copyright>Copyright 2015</copyright>
     <tags>Sentiment Analysis Vivekn</tags>
   </metadata>
+  <files>
+      <file src="readme.txt" target="" />
+  </files>
 </package>
